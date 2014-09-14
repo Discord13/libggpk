@@ -29,6 +29,8 @@ namespace LibDat.Files
 		public int YoutubeVideo { get; set; }
 		[StringIndex]
 		public int LargeArtPath { get; set; }
+        [StringIndex]
+        public int Description2 { get; set; }
 		public int Unknown15 { get; set; }
 		[StringIndex]
 		public int DailyDealArtPath { get; set; }
@@ -51,6 +53,7 @@ namespace LibDat.Files
 			Unknown11 = inStream.ReadInt64();
 			YoutubeVideo = inStream.ReadInt32();
 			LargeArtPath = inStream.ReadInt32();
+            Description2 = inStream.ReadInt32();
 			Unknown15 = inStream.ReadInt32();
 			DailyDealArtPath = inStream.ReadInt32();
 		}
@@ -72,13 +75,14 @@ namespace LibDat.Files
 			outStream.Write(Unknown11);
 			outStream.Write(YoutubeVideo);
 			outStream.Write(LargeArtPath);
+            outStream.Write(Description2);
 			outStream.Write(Unknown15);
 			outStream.Write(DailyDealArtPath);
 		}
 
 		public override int GetSize()
 		{
-			return 0x45;
+			return 0x49;
 		}
 	}
 }

@@ -14,6 +14,7 @@ namespace LibDat.Files
 		public bool Flag1 { get; set; }
 		public int Unknown4 { get; set; }
 		public int Unknown5 { get; set; }
+        public bool Flag2 { get; set; }
 
 
 		public DexMissionMods()
@@ -31,6 +32,7 @@ namespace LibDat.Files
 			Flag1 = inStream.ReadBoolean();
 			Unknown4 = inStream.ReadInt32();
 			Unknown5 = inStream.ReadInt32();
+            Flag2 = inStream.ReadBoolean();
 		}
 
 		public override void Save(BinaryWriter outStream)
@@ -43,11 +45,12 @@ namespace LibDat.Files
 			outStream.Write(Flag1);
 			outStream.Write(Unknown4);
 			outStream.Write(Unknown5);
+            outStream.Write(Flag2);
 		}
 
 		public override int GetSize()
 		{
-			return 0x1A;
+			return 0x1B;
 		}
 	}
 }
