@@ -41,15 +41,6 @@ namespace LibDat.Files
 		public int Unknown18 { get; set; }
 		public int Unknown26 { get; set; }
 		public int Unknown27 { get; set; }
-		public Int64 Unknown28 { get; set; }
-		public Int64 Unknown30 { get; set; }
-		public Int64 Unknown32 { get; set; }
-		public Int64 Unknown34 { get; set; }
-		public Int64 Unknown36 { get; set; }
-		public Int64 Unknown38 { get; set; }
-		public Int64 Unknown40 { get; set; }
-		public Int64 Unknown42 { get; set; }
-		public Int64 Unknown44 { get; set; }
 
 		public Characters(BinaryReader inStream)
 		{
@@ -81,15 +72,6 @@ namespace LibDat.Files
 			Unknown18 = inStream.ReadInt32();
 			Unknown26 = inStream.ReadInt32();
 			Unknown27 = inStream.ReadInt32();
-			Unknown28 = inStream.ReadInt64();
-			Unknown30 = inStream.ReadInt64();
-			Unknown32 = inStream.ReadInt64();
-			Unknown34 = inStream.ReadInt64();
-			Unknown36 = inStream.ReadInt64();
-			Unknown38 = inStream.ReadInt64();
-			Unknown40 = inStream.ReadInt64();
-			Unknown42 = inStream.ReadInt64();
-			Unknown44 = inStream.ReadInt64();
 		}
 
 		public override void Save(System.IO.BinaryWriter outStream)
@@ -122,20 +104,11 @@ namespace LibDat.Files
 			outStream.Write(Unknown18);
 			outStream.Write(Unknown26);
 			outStream.Write(Unknown27);
-			outStream.Write(Unknown28);
-			outStream.Write(Unknown30);
-			outStream.Write(Unknown32);
-			outStream.Write(Unknown34);
-			outStream.Write(Unknown36);
-			outStream.Write(Unknown38);
-			outStream.Write(Unknown40);
-			outStream.Write(Unknown42);
-			outStream.Write(Unknown44);
 		}
 
 		public override int GetSize()
 		{
-			return 0xB8;
+			return 0x70;
 		}
 	}
 }

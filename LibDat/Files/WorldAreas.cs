@@ -81,7 +81,8 @@ namespace LibDat.Files
 		public byte Flag4 { get; set; }
 		public int Unknown53 { get; set; }
 		public byte Flag5 { get; set; }
-
+        public int Unknown54 { get; set; }
+        public int Unknown55 { get; set; }
 
 		public WorldAreas(BinaryReader inStream)
 		{
@@ -147,6 +148,8 @@ namespace LibDat.Files
 			Flag4 = inStream.ReadByte();
 			Unknown53 = inStream.ReadInt32();
 			Flag5 = inStream.ReadByte();
+            Unknown54 = inStream.ReadInt32();
+            Unknown55 = inStream.ReadInt32();
 		}
 
 		public override void Save(BinaryWriter outStream)
@@ -212,12 +215,14 @@ namespace LibDat.Files
 			outStream.Write(Unknown52); 
 			outStream.Write(Flag4);	
 			outStream.Write(Unknown53); 
-			outStream.Write(Flag5);	
+			outStream.Write(Flag5);
+            outStream.Write(Unknown54);
+            outStream.Write(Unknown55); 
 		}
 
 		public override int GetSize()
 		{
-			return 0xEB;
+			return 0xF3;
 		}
 	}
 }

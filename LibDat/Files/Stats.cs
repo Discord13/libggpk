@@ -19,6 +19,7 @@ namespace LibDat.Files
 		public int StatKey1 { get; set; }
 		public int StatKey2 { get; set; }
 		public bool Flag7 { get; set; }
+        public int Unknown3 { get; set; }
 
 		public Stats(BinaryReader inStream)
 		{
@@ -34,6 +35,7 @@ namespace LibDat.Files
 			StatKey1 = inStream.ReadInt32();
 			StatKey2 = inStream.ReadInt32();
 			Flag7 = inStream.ReadBoolean();
+            Unknown3 = inStream.ReadInt32();
 		}
 
 		public override void Save(BinaryWriter outStream)
@@ -50,11 +52,12 @@ namespace LibDat.Files
 			outStream.Write(StatKey1);
 			outStream.Write(StatKey2);
 			outStream.Write(Flag7);
+            outStream.Write(Unknown3);
 		}
 
 		public override int GetSize()
 		{
-			return 0x1B;
+			return 0x1F;
 		}
 	}
 }

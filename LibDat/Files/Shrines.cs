@@ -26,6 +26,7 @@ namespace LibDat.Files
 		public int Unknown13 { get; set; }
 		public bool Unknown14 { get; set; }
 		public Int64 Unknown15 { get; set; }
+        public bool Unknown16 { get; set; }
 
 		public Shrines(BinaryReader inStream)
 		{
@@ -47,6 +48,7 @@ namespace LibDat.Files
 			Unknown13 = inStream.ReadInt32();
 			Unknown14 = inStream.ReadBoolean();
 			Unknown15 = inStream.ReadInt64();
+            Unknown16 = inStream.ReadBoolean();
 		}
 		public override void Save(BinaryWriter outStream)
 		{
@@ -68,11 +70,12 @@ namespace LibDat.Files
 			outStream.Write(Unknown13);
 			outStream.Write(Unknown14);
 			outStream.Write(Unknown15);
+            outStream.Write(Unknown16);
 		}
 
 		public override int GetSize()
 		{
-			return 0x52;
+			return 0x53;
 		}
 	}
 }
