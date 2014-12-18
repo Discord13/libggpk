@@ -70,6 +70,7 @@
     <Compile Include="Files\Characters.cs" />
     <Compile Include="Files\ChestClusters.cs" />
     <Compile Include="Files\Chests.cs" />
+    <Compile Include="Files\Notifications.cs" />
     <Compile Include="Files\ClientStrings.cs" />
     <Compile Include="Files\Commands.cs" />
     <Compile Include="Files\ComponentArmour.cs" />

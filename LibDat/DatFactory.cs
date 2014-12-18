@@ -482,6 +482,8 @@ namespace LibDat
 					return new MonsterVarieties(inStream);
 				case "Music":
 					return new Music(inStream);
+                case "Notifications":
+                    return new Notifications(inStream);
 				case "NPCs":
 					return new NPCs(inStream);
 				case "NPCTalk":
