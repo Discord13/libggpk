@@ -168,6 +168,70 @@ namespace PoeStrings
 		}
 
 		/// <summary>
+		/// Applies translations to content.ggpk
+		/// </summary>
+		public void ApplyTranslationsToFile()
+		{
+			StringBuilder outputBuffer = new StringBuilder();
+
+			foreach (var datTranslation in AllDatTranslations)
+			{
+				// Map of originalText -> Translation containing all translations to apply
+				Dictionary<string, Translation> translationsToApply = (from n in datTranslation.Value.Translations
+																	   where n.Status == Translation.TranslationStatus.NeedToApply
+																	   select n).ToDictionary(k => k.OriginalText);
+				if (translationsToApply.Count == 0)
+				{
+					continue;
+				}
+
+				// Record we will be translating with data from translationTable
+				FileRecord datRecord = fileRecordMap[datTranslation.Value.DatName];
+
+				// Raw bytes of the .dat file we will be translating
+				byte[] datBytes = datRecord.ReadData(ggpkPath);
+
+				// Dat parser for changing the actual strings
+				DatContainer dc = new DatContainer(new MemoryStream(datBytes), datTranslation.Value.DatName);
+
+				// Replace the actual strings
+				foreach (var item in dc.DataEntries)
+				{
+					UnicodeString currentDatString = (item.Value as UnicodeString);
+					if (currentDatString == null || !currentDatString.IsUserString)
+					{
+						continue;
+					}
+
+					if (!translationsToApply.ContainsKey(currentDatString.Data))
+					{
+						continue;
+					}
+
+					Translation translationBeingApplied = translationsToApply[currentDatString.Data];
+					currentDatString.NewData = translationBeingApplied.TranslatedText;
+
+					outputBuffer.AppendLine(string.Format(Settings.Strings["ApplyTranslations_TextReplaced"], translationBeingApplied.ShortNameCurrent, translationBeingApplied.ShortNameTranslated));
+					translationBeingApplied.Status = Translation.TranslationStatus.AlreadyApplied;
+				}
+
+				string subPath = "Data";
+				bool exists = System.IO.Directory.Exists(subPath);
+				if (!exists)
+					System.IO.Directory.CreateDirectory(subPath);
+				string patched = "Data/" + datTranslation.Value.DatName;
+				FileStream patchedFileStream = File.Open(patched, FileMode.Create);
+				patchedFileStream.Write(dc.GetBytes(), 0, dc.GetBytes().Length);
+				patchedFileStream.Close();
+			}
+
+			if (outputBuffer.Length > 0)
+			{
+				Output(outputBuffer.ToString());
+			}
+		}
+
+		/// <summary>
 		/// Searches all of the /data/*.dat files in content.ggpk for user strings that can be translated. Also fills
 		/// out 'fileRecordMap' with valid datName -> FileRecord mappings.
 		/// </summary>
