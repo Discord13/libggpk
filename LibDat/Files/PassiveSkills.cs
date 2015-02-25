@@ -24,7 +24,7 @@ namespace LibDat.Files
 		public int Data1 { get; set; }
 		public bool IsKeystone { get; set; }
 		public bool IsNotable { get; set; }
-		[StringIndex]
+		[UserStringIndex]
 		public int FlavourText { get; set; }
 		public bool IsJustIcon { get; set; }
 		public Int64 Unknown13 { get; set; }
