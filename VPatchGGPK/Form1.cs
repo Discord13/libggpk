@@ -225,6 +225,13 @@ namespace VPatchGGPK
 			buttonSelectPOE.Enabled = false;
 
 			CreateExampleRegistryFile(ggpkPath);
+			using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"listfile.txt"))
+			{
+				foreach (var pair in RecordsByPath)
+				{
+					file.WriteLine(pair.Key);
+				}
+			}
 		}
 
 		private void HandlePatchArchive(string archivePath)
