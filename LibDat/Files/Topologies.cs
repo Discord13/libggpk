@@ -12,7 +12,7 @@ namespace LibDat.Files
 		public int Unknown2 { get; set; }
 		public int Unknown3 { get; set; }
 		public int Unknown4 { get; set; }
-		public  Int64 EnvironmentKey { get; set; }
+		public Int64 EnvironmentKey { get; set; }
 
 		public Topologies(BinaryReader inStream)
 		{

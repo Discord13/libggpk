@@ -21,6 +21,9 @@ namespace LibDat.Files
 		public int Data1 { get; set; }
 		[StringIndex]
 		public int Unknown12 { get; set; }
+        public bool Flag0 { get; set; }
+        public int Data2Length { get; set; }
+        public int Data2 { get; set; }
 
 		public UniqueChests(BinaryReader inStream)
 		{
@@ -38,6 +41,9 @@ namespace LibDat.Files
 			Data0Length = inStream.ReadInt32();
 			Data1 = inStream.ReadInt32();
 			Unknown12 = inStream.ReadInt32();
+            Flag0 = inStream.ReadBoolean();
+            Data2Length = inStream.ReadInt32();
+            Data2 = inStream.ReadInt32();
 		}
 
 		public override void Save(BinaryWriter outStream)
@@ -56,11 +62,14 @@ namespace LibDat.Files
 			outStream.Write(Data1Length);
 			outStream.Write(Data1);
 			outStream.Write(Unknown12);
+            outStream.Write(Flag0);
+            outStream.Write(Data2Length);
+            outStream.Write(Data2);
 		}
 
 		public override int GetSize()
 		{
-			return 0x38;
+			return 0x41;
 		}
 	}
 }

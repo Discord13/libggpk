@@ -15,6 +15,7 @@ namespace LibDat.Files
 		public int EffectB { get; set; }
 		public Int64 Unknown4 { get; set; }
 		public Int64 Unknown5 { get; set; }
+        public int Unknown6 { get; set; }
 
 		public BuffVisuals()
 		{
@@ -29,6 +30,7 @@ namespace LibDat.Files
 			EffectB = inStream.ReadInt32();
 			Unknown4 = inStream.ReadInt64();
 			Unknown5 = inStream.ReadInt64();
+            Unknown6 = inStream.ReadInt32();
 		}
 
 		public override void Save(BinaryWriter outStream)
@@ -39,11 +41,12 @@ namespace LibDat.Files
 			outStream.Write(EffectB);
 			outStream.Write(Unknown4);
 			outStream.Write(Unknown5);
+            outStream.Write(Unknown6);
 		}
 
 		public override int GetSize()
 		{
-			return 0x20;
+			return 0x24;
 		}
 	}
 }

@@ -34,6 +34,7 @@ namespace LibDat.Files
 		public int Unknown15 { get; set; }
 		[StringIndex]
 		public int DailyDealArtPath { get; set; }
+        public int Unknown16 { get; set; }
 
 
 		public ShopItem(BinaryReader inStream)
@@ -56,6 +57,7 @@ namespace LibDat.Files
             Description2 = inStream.ReadInt32();
 			Unknown15 = inStream.ReadInt32();
 			DailyDealArtPath = inStream.ReadInt32();
+            Unknown16 = inStream.ReadInt32();
 		}
 
 		public override void Save(BinaryWriter outStream)
@@ -78,11 +80,12 @@ namespace LibDat.Files
             outStream.Write(Description2);
 			outStream.Write(Unknown15);
 			outStream.Write(DailyDealArtPath);
+            outStream.Write(Unknown16);
 		}
 
 		public override int GetSize()
 		{
-			return 0x49;
+			return 0x4D;
 		}
 	}
 }

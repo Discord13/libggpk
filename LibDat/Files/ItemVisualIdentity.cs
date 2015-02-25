@@ -33,6 +33,8 @@ namespace LibDat.Files
 		public int Unknown19 { get; set; }
 		public int Unknown20 { get; set; }
 		public int Unknown21 { get; set; }
+        public int Unknown22 { get; set; }
+        public int Unknown23 { get; set; }
 
 		public ItemVisualIdentity(BinaryReader inStream)
 		{
@@ -61,6 +63,8 @@ namespace LibDat.Files
 			Unknown19 = inStream.ReadInt32();
 			Unknown20 = inStream.ReadInt32();
 			Unknown21 = inStream.ReadInt32();
+            Unknown22 = inStream.ReadInt32();
+            Unknown23 = inStream.ReadInt32();
 		}
 
 		public override void Save(BinaryWriter outStream)
@@ -87,11 +91,13 @@ namespace LibDat.Files
 			outStream.Write(Unknown19);
 			outStream.Write(Unknown20);
 			outStream.Write(Unknown21);
+            outStream.Write(Unknown22);
+            outStream.Write(Unknown23);
 		}
 
 		public override int GetSize()
 		{
-			return 0x68;
+			return 0x70;
 		}
 	}
 }
