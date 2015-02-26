@@ -344,6 +344,8 @@ namespace LibDat
                     return new CharacterPanelTabs(inStream);
 				case "Characters":
 					return new Characters(inStream);
+                case "CharacterStartStates":
+                    return new CharacterStartStates(inStream);
 				case "ChestClusters":
 					return new ChestClusters(inStream);
 				case "Chests":
@@ -364,6 +366,8 @@ namespace LibDat
 					return new CurrencyItems(inStream);
 				case "CurrencyUseTypes":
 					return new CurrencyUseTypes(inStream);
+                case "DailyMissions":
+                    return new DailyMissions(inStream);
 				case "Dances":
 					return new Dances(inStream);
 				case "Default":
